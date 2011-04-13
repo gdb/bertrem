@@ -117,7 +117,7 @@ module BERTREM
       while @receive_buf.length > 0 do
         unless @more
           begin
-            if @receive_buf.length > 4
+            if @receive_buf.length >= 4
               @receive_len = @receive_buf.slice!(0..3).unpack('N').first if @receive_len == 0
               raise BERTRPC::ProtocolError.new(BERTRPC::ProtocolError::NO_DATA) unless @receive_buf.length > 0
             else
